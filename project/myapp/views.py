@@ -9,6 +9,7 @@ def product(request):
     return render(request, "product.html")
 
 def upload(request):
+    import os
     import pandas as pd
     import googlemaps
     from datetime import datetime
@@ -278,15 +279,19 @@ def upload(request):
             findDistance(location)
             currentLocationCount += 1;
                 
-        #newRoute['Distance (Text)'] = distanceTextColumn
         newRoute['Distance'] = distanceValueColumn #miles
         newRoute['Duration'] = durationTextColumn
 
-        #newRoute['Duration (Minutes)'] = durationValueColumn
+        folder_path = os.path.dirname(os.path.abspath(__file__))
+        files_folder_path = os.path.join(folder_path, 'files')
+        os.makedirs(files_folder_path, exist_ok=True)
 
-        response = HttpResponse(content_type = "text/csv")
-        response['Content-Disposition'] = 'attachment; filename = "newRoute.csv'
-        newRoute.to_csv(response, index = False)   
+        file_path = os.path.join(files_folder_path, 'newRoute.csv')
 
-        return response
+        # Save the newRoute DataFrame to the CSV file
+        newRoute.to_csv(file_path, index=False)
+        
+        return render(request, "newRoute.html")
     
+    
+

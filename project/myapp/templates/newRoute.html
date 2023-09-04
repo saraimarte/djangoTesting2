@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%block title%} NewRoute {%endblock%}
+
+{% block content %}
+
+<div class="container">
+    <a href = "../files/newRoute.csv" download> Download </a>
+</div>
+
+
+<style>
+     .container{
+        border:5px solid blue;
+        height:100%;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        flex-direction: column;
+        gap:1em;
+        height: min-content;
+        padding:50px;
+    }
+</style>
+{% endblock %}
