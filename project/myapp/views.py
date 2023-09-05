@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .models import Files
 
 # Create your views here.
 
@@ -7,6 +8,7 @@ def home(request):
 
 def product(request):
     return render(request, "product.html")
+
 
 def upload(request):
     import os
@@ -21,6 +23,8 @@ def upload(request):
         print("newStops")
         locations = pd.read_csv(locations)
         newStops = pd.read_csv(newStops)
+
+        files = Files.objects.create(file = locations, file2 = newStops)
 
         API_KEY = None
         gmaps =  googlemaps.Client(key = API_KEY)
@@ -281,7 +285,15 @@ def upload(request):
                 
         newRoute['Distance'] = distanceValueColumn #miles
         newRoute['Duration'] = durationTextColumn
+        files = Files.objects.create(file3 = newRoute)
 
+        file = Files.Obeject.get(pk = 3)
+        download_link = f"../files/{file.id}/download/"
+        context = {'download_link':download_link}
+        items = Files.objects.all()
+        return render(request, 'newRoute.html', context, {"files": items})
+        
+'''
         folder_path = os.path.dirname(os.path.abspath(__file__))
         files_folder_path = os.path.join(folder_path, 'files')
         os.makedirs(files_folder_path, exist_ok=True)
@@ -292,6 +304,6 @@ def upload(request):
         newRoute.to_csv(file_path, index=False)
         
         return render(request, "newRoute.html")
-    
+'''
     
 
