@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {%block title%} NewRoute {%endblock%}
 
 {% block content %}
 
+
+
 <div class="container">
-    <a href = "{{download_link}}" download> Download New Route </a>
+    <a href = "{% static 'files/newRoute.csv' %}" download> Download New Route </a>
 </div>
 
 

@@ -16,6 +16,8 @@ def upload(request):
     import googlemaps
     from datetime import datetime
     import numpy as np
+    from django.conf import settings
+
     if request.method == "POST" and request.FILES['file'] and request.FILES['file2']:
         locations = request.FILES['file']
         print("locations")
@@ -23,8 +25,6 @@ def upload(request):
         print("newStops")
         locations = pd.read_csv(locations)
         newStops = pd.read_csv(newStops)
-
-        files = Files.objects.create(file = locations, file2 = newStops)
 
         API_KEY = None
         gmaps =  googlemaps.Client(key = API_KEY)
@@ -285,14 +285,11 @@ def upload(request):
                 
         newRoute['Distance'] = distanceValueColumn #miles
         newRoute['Duration'] = durationTextColumn
-        files = Files.objects.create(file3 = newRoute)
 
-        file = Files.Obeject.get(pk = 3)
-        download_link = f"../files/{file.id}/download/"
-        context = {'download_link':download_link}
-        items = Files.objects.all()
-        return render(request, 'newRoute.html', context, {"files": items})
         
+        return render(request, "newRoute.html")
+
+
 '''
         folder_path = os.path.dirname(os.path.abspath(__file__))
         files_folder_path = os.path.join(folder_path, 'files')
@@ -302,8 +299,18 @@ def upload(request):
 
         # Save the newRoute DataFrame to the CSV file
         newRoute.to_csv(file_path, index=False)
-        
-        return render(request, "newRoute.html")
-'''
-    
 
+        
+           # Get the path of the static files directory
+        static_folder_path = os.path.join(settings.BASE_DIR, 'static')
+
+        # Create the files folder inside the static folder if it doesn't exist
+        files_folder_path = os.path.join(static_folder_path, 'files')
+        os.makedirs(files_folder_path, exist_ok=True)
+
+        # Specify the file path
+        file_path = os.path.join(files_folder_path, 'newRoute.csv')
+
+        # Save the newRoute DataFrame to the CSV file
+        newRoute.to_csv(file_path, index=False)
+'''
