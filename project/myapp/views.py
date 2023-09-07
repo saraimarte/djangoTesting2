@@ -285,7 +285,7 @@ def upload(request):
                 
         newRoute['Distance'] = distanceValueColumn #miles
         newRoute['Duration'] = durationTextColumn
-
+        
         
         return render(request, "newRoute.html")
 
