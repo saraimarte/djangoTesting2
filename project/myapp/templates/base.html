@@ -8,18 +8,54 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
+    {% load static %}
 </head>
 <body>
-    <header>
+    <header x-data = "{openMenu: false}">
         <h1>RouteSync</h1>
-        <img src = "../static/myapp/images/menu.png" /> 
+        <img id = "menu" x-on:click = "openMenu =! openMenu" src = "{% static 'myapp/images/menu.png' %}" alt = "Menu" /> 
+        <nav class = "openMenu" x-show = "openMenu">
+            <ul>
+                <li> <a href = "{% url 'Product'% }"> Product </a> </li>
+                <li> <a href = "{% url 'About' %}"> About  </a>  </li>
+                <li> <a href = "{% url 'Contact' %}"> Contact </a>  </li>
+            </ul>
+        </nav>
     </header>
+    
     {% block content %} {% endblock %}
 </body>
 </html>
 
 <style>
+    #menu{
+        z-index: 5;
+    }
+    .openMenu{
+        height:100%;
+        width:100%;
+        position:fixed;
+        background-color: white;
+        top:0;
+        left:0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align:center;
+    }
+
+    .openMenu li{
+        list-style:none;
+        padding:20px;
+    }
+    .openMenu a{
+        text-decoration: none;
+        color:black;
+        font-family: 'Inter', sans-serif;
+        font-size:48px;
+        
+
+    }
     *{
         margin:0;
         padding:0;
@@ -30,8 +66,8 @@
     }
     header{
         display:flex;
-        border:5px solid black;
         justify-content: space-around;
         align-items: center;
+        margin-top:20px;
     }
 </style>

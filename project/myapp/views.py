@@ -6,21 +6,22 @@ from .models import Files
 def home(request):
     return render(request, "base.html")
 
-'''
-def product(request):
-    return render(request, "product.html")
-'''
+
+def about(request):
+    return render(request, "about.html")
+
+def contact(request):
+    return render(request, "contact.html")
 
 def product(request):
-    import os
-    import pandas as pd
-    import googlemaps
-    from datetime import datetime
-    import numpy as np
-    from django.conf import settings
-
 
     if request.method == "POST" and request.FILES['file'] and request.FILES['file2']:
+        import os
+        import pandas as pd
+        import googlemaps
+        from datetime import datetime
+        import numpy as np
+        from django.conf import settings
         locations = request.FILES['file']
         print("locations")
         newStops = request.FILES['file2']
@@ -28,7 +29,7 @@ def product(request):
         locations = pd.read_csv(locations)
         newStops = pd.read_csv(newStops)
 
-        API_KEY = None
+        API_KEY = 'AIzaSyD26fGOcDwCCbU1pgZabzdEMwDujnDUp18'
         gmaps =  googlemaps.Client(key = API_KEY)
         closestLocations = []
         newDistances = []

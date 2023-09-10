@@ -1,1 +1,55 @@
 {% extends "base.html" %}
+
+{% block title %} About {% endblock %}
+
+{% block content %}
+<div class = "container">
+    <h1 class = "font" >About </h1>
+    <p class = "font"> My father's job is to deliver newspapers to various stores. On May 2023, his boss added many new stops 
+        to his route but didn't provide him with an updated route. 
+        <br />
+        &nbsp;
+        <br />
+
+        Shortly after that, I found my father manually going through each of 
+        his stops and trying to find out where to place the new stops in his route.
+        He spent the whole day working on it.
+        <br />
+        &nbsp;
+        <br />
+        I felt bad because I knew that I could help him. So I did.
+        <br />
+        &nbsp;
+        <br />
+        I went and automated his actions into a nice Python Script. 
+        <br />
+        &nbsp;
+        <br />
+        At that time, despite knowing Python, HTML, CSS, and a bit of Vanilla JS,
+        I had no idea how to use my Python code in a frontend site so it stayed as a script. 
+        <br />
+        &nbsp;
+        <br />
+        Fast forward September 2023 I had learned the basics
+        of django and managed to create the frontend all the while using 
+        the Python Script in the backend leading to the creation of...RouteSync.
+    
+    </p>
+</div>
+
+<style>
+    .container{
+        display:flex;
+        flex-direction: column;
+        gap:1em;
+        height:100%;
+        height: min-content;
+        padding:50px;
+    }
+    .font{
+        font-family: 'Inter', sans-serif;
+    }
+</style>
+
+{% endblock %}
+
