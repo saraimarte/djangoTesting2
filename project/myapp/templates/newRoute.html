@@ -8,8 +8,11 @@
 
 
 <div class="container">
-    <a href = "{% static 'files/newRoute.csv' %}" download> Download New Route </a>
+    {% for route in files %}
+    <a href = "/media/uploads/{{route.file.url}}" download> Download New Route </a>
+    {% endfor %}
 </div>
+
 
 
 <style>

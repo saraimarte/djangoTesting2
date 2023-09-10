@@ -6,17 +6,19 @@ from .models import Files
 def home(request):
     return render(request, "base.html")
 
+'''
 def product(request):
     return render(request, "product.html")
+'''
 
-
-def upload(request):
+def product(request):
     import os
     import pandas as pd
     import googlemaps
     from datetime import datetime
     import numpy as np
     from django.conf import settings
+
 
     if request.method == "POST" and request.FILES['file'] and request.FILES['file2']:
         locations = request.FILES['file']
@@ -285,9 +287,20 @@ def upload(request):
                 
         newRoute['Distance'] = distanceValueColumn #miles
         newRoute['Duration'] = durationTextColumn
-        
-        
-        return render(request, "newRoute.html")
+        print("NEW ROUTE DONE")
+        file_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'newRoute.csv')
+        newRoute.to_csv(file_path, index = False)
+        newFile = Files(file = './media/uploads/newRoute.csv')
+        print("Adding newRoute to the database...")
+        print(type(newFile))
+        newFile.save()
+        print("Saving the new file to the database...")
+        fileItems= Files.objects.all()
+        print("adding all file items to fileitems...")
+        context = {"files": fileItems}
+        return render(request, "product.html", context)
+    else:
+        return render(request, "product.html")
 
 
 '''

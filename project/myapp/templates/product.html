@@ -4,9 +4,8 @@
 
 {% block content %}
 
-
 <div class="container">
-    <form method="POST" enctype="multipart/form-data" action="/upload/"  x-data = "{open:false, open2:false, filename: '', filename2: ''}">
+    <form method="POST" action="" enctype="multipart/form-data" x-data = "{open:false, open2:false, filename: '', filename2: ''}">
         {% csrf_token %} 
         <div class="step"> 
             <h1>1. Upload Current Route</h1>
@@ -35,7 +34,14 @@
                 <h2>Add new stops to the current route.</h2>
                 <button type="submit">Submit</button>
         </div>
+        <div class="container">
+            {% for route in files %}
+            <a href = ".../media/uploads/newRoute.csv" download> Download New Route </a>
+            {% endfor %}
+        </div>
+        
 </form>
+
 
     
 </div>
