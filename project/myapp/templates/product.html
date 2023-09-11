@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="Stepscontainer">
     <form method="POST" action="" enctype="multipart/form-data" x-data = "{open:false, open2:false, open3:false, filename: '', filename2: ''}">
         {% csrf_token %} 
         <div class="step"> 
@@ -31,7 +31,7 @@
         </div>
         <div class="step">
                 <h1>3. Submit!</h1>
-                <h2>Add new stops to the current route.</h2>
+                <h2>Add your new stops to your current route.</h2>
                 <a x-show = "open3" id = "newRouteLink" href = "/media/uploads/newRoute.csv" download> Download New Route </a>
                 <button type="submit" x-on:change = "open3 =! open3">Submit</button>
         </div>
@@ -42,18 +42,13 @@
 </div>
 
 <style>
-    .container{
-        height:100%;
-        display:flex;
-        justify-content: center;
-        align-items:center;
-        flex-direction: column;
-        gap:1em;
-        height: min-content;
-        padding:50px;
-    }
+    /*
+   .Stepscontainer{
+    border:5px solid orange;
+   }
+   */
     .step{
-        border:5px solid black;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         width:346px;
         min-height:277px;
         height:min-content;
@@ -71,8 +66,10 @@
     form{
         display:flex;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
         gap:1em;
+
     }
     h1{
         font-size:32px;
@@ -99,6 +96,20 @@
 
     .fileStyle{
         font-family: 'Inter', sans-serif;
+    }
+
+   
+
+    @media only screen and (min-width : 1200px) {
+        form{
+            justify-content: start;
+            align-items:center;
+            flex-direction: row;
+            flex-wrap:wrap;
+            gap:1em;
+            height: min-content;
+            padding:50px 50px 50px 0px;
+        }
     }
 </style>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %} About {% endblock %}
 
 {% block content %}
-<div class = "container">
+<div class = "Aboutcontainer">
     <h1 class = "font" >About </h1>
     <p class = "font"> My father's job is to deliver newspapers to various stores. On May 2023, his boss added many new stops 
         to his route but didn't provide him with an updated route. 
@@ -36,18 +36,26 @@
     
     </p>
 </div>
+    
 
 <style>
-    .container{
+    .Aboutcontainer{
         display:flex;
         flex-direction: column;
         gap:1em;
         height:100%;
         height: min-content;
-        padding:50px;
+        width:100%;
+        padding:20px 50px 50px 20px;
+        /*border:5px solid blue;*/
     }
     .font{
         font-family: 'Inter', sans-serif;
+    }
+    @media only screen and (min-width : 480px) {
+        .Aboutcontainer{
+             padding:0;
+    }
     }
 </style>
 
