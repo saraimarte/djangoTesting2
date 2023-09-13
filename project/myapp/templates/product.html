@@ -33,7 +33,7 @@
                 <h1>3. Submit!</h1>
                 <h2>Add your new stops to your current route.</h2>
                 <a x-show = "open3" id = "newRouteLink" href = "/media/uploads/newRoute.csv" download> Download New Route </a>
-                <button type="submit" x-on:change = "open3 =! open3">Submit</button>
+                <button type="submit" x-on:click-9 = "open3 =! open3">Submit</button>
         </div>
         
         </form>
@@ -47,12 +47,13 @@
     border:5px solid orange;
    }
    */
+   
     .step{
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         width:346px;
         min-height:277px;
         height:min-content;
-        padding:50px;
+        padding:20px 50px 20px 50px;
         display:flex;
         justify-content: center;
         flex-direction: column;
@@ -62,6 +63,9 @@
         color:black;
         font-family: 'Inter', sans-serif;
     
+    }
+    button, input{
+        margin-top:10px;
     }
     form{
         display:flex;
@@ -108,9 +112,13 @@
             flex-wrap:wrap;
             gap:1em;
             height: min-content;
-            padding:50px 50px 50px 0px;
         }
+        .step{
+            width:32%;
+            min-width: min-content;
     }
+    }
+
 </style>
 {% endblock %}
 
