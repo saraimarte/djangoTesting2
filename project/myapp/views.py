@@ -29,7 +29,7 @@ def product(request):
         locations = pd.read_csv(locations)
         newStops = pd.read_csv(newStops)
 
-        API_KEY = None
+        API_KEY = 'AIzaSyDioJq0Fm8cQF222QI7_SzCCoY5c0dXMao'
         gmaps =  googlemaps.Client(key = API_KEY)
         closestLocations = []
         newDistances = []
