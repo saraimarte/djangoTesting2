@@ -17,6 +17,13 @@ def product(request):
 
     if request.method == "POST" and request.FILES['file'] and request.FILES['file2']:
         import os
+        folder_path = "./media/uploads/"
+        file_list = os.listdir(folder_path)
+        # Iterate over the files and delete them
+        for file_name in file_list:
+            file_path = os.path.join(folder_path, file_name)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
         import pandas as pd
         import googlemaps
         from datetime import datetime
@@ -29,7 +36,7 @@ def product(request):
         locations = pd.read_csv(locations)
         newStops = pd.read_csv(newStops)
 
-        API_KEY = 'AIzaSyDioJq0Fm8cQF222QI7_SzCCoY5c0dXMao'
+        API_KEY = ''
         gmaps =  googlemaps.Client(key = API_KEY)
         closestLocations = []
         newDistances = []
