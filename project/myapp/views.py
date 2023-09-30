@@ -16,14 +16,10 @@ def contact(request):
 def product(request):
 
     if request.method == "POST" and request.FILES['file'] and request.FILES['file2']:
+        api_key = request.POST.get("key")
+        API_KEY = api_key;
         import os
-        folder_path = "./media/uploads/"
-        file_list = os.listdir(folder_path)
-        # Iterate over the files and delete them
-        for file_name in file_list:
-            file_path = os.path.join(folder_path, file_name)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
+    
         import pandas as pd
         import googlemaps
         from datetime import datetime
@@ -35,8 +31,6 @@ def product(request):
         print("newStops")
         locations = pd.read_csv(locations)
         newStops = pd.read_csv(newStops)
-
-        API_KEY = ''
         gmaps =  googlemaps.Client(key = API_KEY)
         closestLocations = []
         newDistances = []
@@ -309,29 +303,3 @@ def product(request):
         return render(request, "product.html", context)
     else:
         return render(request, "product.html")
-
-
-'''
-        folder_path = os.path.dirname(os.path.abspath(__file__))
-        files_folder_path = os.path.join(folder_path, 'files')
-        os.makedirs(files_folder_path, exist_ok=True)
-
-        file_path = os.path.join(files_folder_path, 'newRoute.csv')
-
-        # Save the newRoute DataFrame to the CSV file
-        newRoute.to_csv(file_path, index=False)
-
-        
-           # Get the path of the static files directory
-        static_folder_path = os.path.join(settings.BASE_DIR, 'static')
-
-        # Create the files folder inside the static folder if it doesn't exist
-        files_folder_path = os.path.join(static_folder_path, 'files')
-        os.makedirs(files_folder_path, exist_ok=True)
-
-        # Specify the file path
-        file_path = os.path.join(files_folder_path, 'newRoute.csv')
-
-        # Save the newRoute DataFrame to the CSV file
-        newRoute.to_csv(file_path, index=False)
-'''

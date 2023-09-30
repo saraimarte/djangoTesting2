@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="Stepscontainer">
-    <form method="POST" action="" enctype="multipart/form-data" x-data = "{open:false, message:false, open2:false, open3:false, filename: '', filename2: ''}">
+    <form method="POST" action="" enctype="multipart/form-data" x-data = "{open:false, open2:false, open3:false, filename: '', filename2: ''}">
         {% csrf_token %} 
         <div class="step"> 
             <h1>1. Upload Current Route</h1>
@@ -29,20 +29,15 @@
             filename2 = $event.target.files[0].name;
             ">
         </div>
-        <div class="step">
+    
 
-                <h1>3. Submit!</h1>
-                <h2>Add your new stops to your current route.</h2>
-                <a x-show = "open3" id = "newRouteLink" href = "/media/uploads/newRoute.csv" download>
-                {% if message %}
-                   Download New Route
-                {% else %}
-                    
-                {% endif %}
-                 
-                
-                </a>
-                <button type="submit" x-on:click = "open3 =! open3, message =!message">Submit</button>
+        <div class = "step">
+            <h1> 3. Enter Google Maps API Key </h1>
+            <input type = "text" name = "key">
+            {% for route in files %}
+            <a x-show = "open3" href = "/media/uploads/newRoute.csv" download> Download New Route </a>
+            {% endfor %}
+            <button type="submit" x-on:click = "open3=!open3">Submit</button>
         </div>
         
         </form>
