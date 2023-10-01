@@ -299,7 +299,9 @@ def product(request):
         print("Saving the new file to the database...")
         fileItems= Files.objects.all()
         print("adding all file items to fileitems...")
-        context = {"files": fileItems}
+        open3 = True
+
+        context = {"files": fileItems, "open3": open3}
         return render(request, "product.html", context)
     else:
         return render(request, "product.html")
